@@ -1,0 +1,23 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather-App built with asynchronous node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wowkmw/Weather-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wowkmw/Weather-App/issues"
+  },
+  "homepage": "https://github.com/wowkmw/Weather-App#readme",
+  "dependencies": {
+    "postman-request": "^2.88.1-postman.27"
+  }
+}
