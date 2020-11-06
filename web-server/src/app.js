@@ -9,7 +9,13 @@ app.get('', (req, res) => {
 });
 
 app.get('/help', (req, res) => {
-    res.send('<h1>Help page</h1>');
+    res.send([{
+        name: 'jim',
+        age: 29
+    }, {
+        name: 'jim',
+        age: 29
+    }]);
 });
 
 app.get('/about', (req, res) => {
@@ -17,7 +23,10 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
-    res.send('<h1>Weather page</h1>');
+    res.send({
+        location: 'Brisbane',
+        weather: 'overcast'
+    });
 });
 
 app.listen(3000, () => console.log('server is up on port 3000...'));
