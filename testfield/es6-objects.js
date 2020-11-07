@@ -32,4 +32,13 @@ const transaction = (type, {
     stock
 }) => console.log(type, label, stock);
 
+const Income = function (id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+};
+
+let income1 = new Income(6, 'salary, 200');
+console.log(income1);
+
 transaction('order', product);
