@@ -1,25 +1,31 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
-// app.com
-// app.com/help
+
+const publicDir = path.join(__dirname, '../public');
+
+app.use(express.static(publicDir));
+app.set('view engine', 'hbs');
 
 app.get('', (req, res) => {
-    res.send('<h1>Hello express</h1>');
-});
-
-app.get('/help', (req, res) => {
-    res.send([{
-        name: 'jim',
-        age: 29
-    }, {
-        name: 'jim',
-        age: 29
-    }]);
+    res.render('index', {
+        title: 'weather app',
+        name: 'Jim Kuo'
+    });
 });
 
 app.get('/about', (req, res) => {
-    res.send('<h1>About page</h1>');
+    res.render('about', {
+        title: 'About Me',
+        name: 'Jim Kuo'
+    });
+});
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+        title: 'Help Page'
+    });
 });
 
 app.get('/weather', (req, res) => {
