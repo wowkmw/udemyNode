@@ -1,16 +1,25 @@
 const express = require('express');
 const path = require('path');
+const hbs = require('hbs');
 
 const app = express();
 
+//define paths for express config
 const publicDir = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
-app.use(express.static(publicDir));
+//setup handlebar engine and views location 
 app.set('view engine', 'hbs');
+app.set('views', viewsPath);
+hbs.registerPartials(partialsPath);
+
+//setup static dir to serve
+app.use(express.static(publicDir));
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'weather app',
+        title: 'Weather App',
         name: 'Jim Kuo'
     });
 });
@@ -24,7 +33,8 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        title: 'Help Page'
+        title: 'Help Page',
+        name: 'Jim Kuo'
     });
 });
 
@@ -32,6 +42,22 @@ app.get('/weather', (req, res) => {
     res.send({
         location: 'Brisbane',
         weather: 'overcast'
+    });
+});
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMsg: 'Help article not found',
+        name: 'Jim Kuo'
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMsg: 'Page not found',
+        name: 'Jim Kuo'
     });
 });
 
