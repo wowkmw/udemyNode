@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
+const forecast = require('./utils/forecast');
+const geocode = require('./utils/geocode');
 
 const app = express();
 
@@ -44,8 +46,34 @@ app.get('/weather', (req, res) => {
             error: "please provide an address"
         });
     } else {
-        res.send({
-            address: req.query.address,
+        geocode(req.query.address, (error, {
+            lat,
+            lon, //destructuring
+            location
+        } = {}) => { //when destructuring remember to set its default value {}, otherwise 
+            //TypeError: Cannot destructure property 'lat' of 'undefined' as it is undefined. can happen
+            if (error) {
+                return res.send({
+                    error
+                });
+            }
+            forecast(lat, lon, (error, {
+                description,
+                currentTemp,
+                feelslike
+            } = {}) => {
+                if (error) {
+                    res.send({
+                        error
+                    });
+                }
+                res.send({
+                    location,
+                    description,
+                    currentTemp,
+                    feelslike
+                });
+            });
         });
     }
 });
