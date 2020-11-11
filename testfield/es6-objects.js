@@ -30,7 +30,7 @@ const {
 const transaction = (type, {
     label,
     stock
-}) => console.log(type, label, stock);
+} = {}) => console.log(type, label, stock);
 
 const Income = function (id, description, value) {
     this.id = id;

@@ -40,7 +40,7 @@ app.get('/help', (req, res) => {
     });
 });
 
-app.get('/weather', (req, res) => {
+app.get('/weather', (req, res) => { //this is the weather API handler
     if (!req.query.address) {
         res.send({
             error: "please provide an address"
