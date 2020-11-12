@@ -6,7 +6,7 @@ const geocode = require('./utils/geocode');
 
 const app = express();
 
-//define paths for express config
+//define paths for express configuration
 const publicDir = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
 const partialsPath = path.join(__dirname, '../templates/partials');
